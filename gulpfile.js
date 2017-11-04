@@ -45,10 +45,10 @@ gulp.task('css-libs', ['sass'], function() {
 		.pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
 });
 
-gulp.task('watch',['browser-sync','css-libs','sass','scripts'], function(){
-	gulp.watch('app/sass/*.sass',['sass',browserSync.reload]); // Наблюдение за sass файлами в папке sass
+gulp.task('watch', ['browser-sync', 'css-libs', 'scripts'], function(){
+	gulp.watch('app/sass/**/*.sass', ['sass', browserSync.reload]); // Наблюдение за sass файлами в папке sass
 	gulp.watch('app/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
-	gulp.watch('app//js/**/*.js', browserSync.reload);  // Наблюдение за JS файлами в папке js
+	gulp.watch('app/js/**/*.js', browserSync.reload);  // Наблюдение за JS файлами в папке js
 });
 
 gulp.task('clean', function() {
