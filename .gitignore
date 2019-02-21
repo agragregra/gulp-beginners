@@ -1,7 +1,7 @@
-/node_modules/
-/dist/
+**/node_modules/
+**/dist/
 /.git/
-/app/css/
+**/app/css/
 /**/*.psd
 /**/package-lock.json
 /**/Thumbs.db
