@@ -40,6 +40,7 @@ gulp.task('scripts', function() {
 
 gulp.task('css-libs', ['sass'], function() {
 	return gulp.src('app/css/libs.css') // Выбираем файл для минификации
+		.pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
 		.pipe(cssnano()) // Сжимаем
 		.pipe(rename({suffix: '.min'})) // Добавляем суффикс .min
 		.pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
