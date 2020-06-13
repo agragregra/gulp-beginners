@@ -20,6 +20,6 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglifyjs": "^0.6.2",
-    "imagemin-pngquant": "^8.0.0"
+    "imagemin-pngquant": "^9.0.0"
   }
 }
