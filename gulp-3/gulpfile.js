@@ -5,7 +5,7 @@ var gulp       = require('gulp'), // Подключаем Gulp
 	uglify       = require('gulp-uglifyjs'), // Подключаем gulp-uglifyjs (для сжатия JS)
 	cssnano      = require('gulp-cssnano'), // Подключаем пакет для минификации CSS
 	rename       = require('gulp-rename'), // Подключаем библиотеку для переименования файлов
-	del          = require('del'), // Подключаем библиотеку для удаления файлов и папок
+	clean        = require('gulp-clean'), // Подключаем модуль gulp-clean (вместо del)
 	imagemin     = require('gulp-imagemin'), // Подключаем библиотеку для работы с изображениями
 	pngquant     = require('imagemin-pngquant'), // Подключаем библиотеку для работы с png
 	cache        = require('gulp-cache'), // Подключаем библиотеку кеширования
@@ -47,7 +47,7 @@ gulp.task('css-libs', ['sass'], function() {
 });
 
 gulp.task('clean', function() {
-	return del.sync('dist'); // Удаляем папку dist перед сборкой
+	return src('dist', {allowEmpty: true}).pipe(clean()) // Удаляем папку dist перед сборкой
 });
 
 gulp.task('img', function() {

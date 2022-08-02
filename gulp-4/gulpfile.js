@@ -5,7 +5,7 @@ var gulp       = require('gulp'), // Подключаем Gulp
 	uglify       = require('gulp-uglifyjs'), // Подключаем gulp-uglifyjs (для сжатия JS)
 	cssnano      = require('gulp-cssnano'), // Подключаем пакет для минификации CSS
 	rename       = require('gulp-rename'), // Подключаем библиотеку для переименования файлов
-	del          = require('del'), // Подключаем библиотеку для удаления файлов и папок
+	clean        = require('gulp-clean'), // Подключаем модуль gulp-clean (вместо del)
 	imagemin     = require('gulp-imagemin'), // Подключаем библиотеку для работы с изображениями
 	pngquant     = require('imagemin-pngquant'), // Подключаем библиотеку для работы с png
 	cache        = require('gulp-cache'), // Подключаем библиотеку кеширования
@@ -51,8 +51,8 @@ gulp.task('css-libs', function() {
 		.pipe(gulp.dest('app/css')); // Выгружаем в папку app/css
 });
 
-gulp.task('clean', async function() {
-	return del.sync('dist'); // Удаляем папку dist перед сборкой
+gulp.task('clean', function() {
+	return gulp.src('dist', {allowEmpty: true}).pipe(clean()); // Удаляем папку dist перед сборкой
 });
 
 gulp.task('img', function() {
@@ -96,4 +96,4 @@ gulp.task('watch', function() {
 	gulp.watch(['app/js/common.js', 'app/libs/**/*.js'], gulp.parallel('scripts')); // Наблюдение за главным JS файлом и за библиотеками
 });
 gulp.task('default', gulp.parallel('css-libs', 'sass', 'scripts', 'browser-sync', 'watch'));
-gulp.task('build', gulp.parallel('prebuild', 'clean', 'img', 'sass', 'scripts'));
+gulp.task('build', gulp.series('clean', 'prebuild', 'img', 'sass', 'scripts'));
